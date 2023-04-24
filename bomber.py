@@ -89,10 +89,10 @@ def format_phone(num):
 def do_zip_update():
     success = False
     if DEBUG_MODE:
-        zip_url = "https://github.com/drobka/tbomb2/blob/main/archive/TBomb-dev.zip"
+        zip_url = "http://localhost/tbomb2/archive/TBomb-dev.zip"
         dir_name = "TBomb-dev"
     else:
-        zip_url = "https://github.com/drobka/tbomb2/blob/main/archive/master.zip"
+        zip_url = "http://localhost/tbomb2/archive/master.zip"
         dir_name = "TBomb-master"
     print(ALL_COLORS[0]+"Downloading ZIP ... "+RESET_ALL)
     response = requests.get(zip_url)
@@ -173,7 +173,7 @@ def check_for_updates():
         return
     mesgdcrt.SectionMessage("Checking for updates")
     fver = requests.get(
-        "https://raw.githubusercontent.com/drobka/tbomb2/main/master/.version"
+        "http://localhost/tbomb2/master/.version"
     ).text.strip()
     if fver != __VERSION__:
         mesgdcrt.WarningMessage("An update is available")
@@ -187,9 +187,9 @@ def check_for_updates():
 def notifyen():
     try:
         if DEBUG_MODE:
-            url = "https://raw.githubusercontent.com/drobka/tbomb2/main/dev/.notify"
+            url = "http://localhost/tbomb2/dev/.notify"
         else:
-            url = "https://raw.githubusercontent.com/drobka/tbomb2/main/master/.notify"
+            url = "http://localhost/tbomb2/master/.notify"
         noti = requests.get(url).text.upper()
         if len(noti) > 10:
             mesgdcrt.SectionMessage("NOTIFICATION: " + noti)
